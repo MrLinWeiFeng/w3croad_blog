@@ -10,7 +10,6 @@ git branch w0  // 创建分支
 git checkout w0  // 切换到分支
 ```
 
-
 **创建忽略文件.gitignore**
 
 新建一个名叫 `.gitignore` 的文件，并添加如下代码:
