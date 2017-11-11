@@ -1,5 +1,7 @@
 # git使用总结
 
+## 创建和合并分支
+
 新建并切换到分支。
 
 ```
@@ -8,7 +10,13 @@ git checkout -b w0  // -b 表示切换到分支
 // 相当于下面2条命令
 git branch w0  // 创建分支
 git checkout w0  // 切换到分支
+
+git merge w0 
+
+git branch -d w0  // 删除w0分支
 ```
+
+当产生冲突时，处理之后再add提交。
 
 **创建忽略文件.gitignore**
 
