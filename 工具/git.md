@@ -40,3 +40,10 @@ git commit -m "提交"
 ```
 
 2. 不能直接 `push`，需要先 `commit`。
+
+
+3. `git status` 时，中文转义了，解决方法是让 `git` 不处理 `utf-8` 文件名。
+
+```
+git config --global core.quotepath false
+```
