@@ -5,7 +5,7 @@
 ![](./img/array.png)
 
 
-## push() pop() shift() unshift()
+## push()、 pop()、 shift()、 unshift()
 
 这四个方法很常用，主要用于向数组的前后添加或删除一项。会改变原数组。
 
@@ -39,7 +39,7 @@ a.concat(b, c)   // [1, 'e', 'd']
 
 ## copyWithin()
 ## entries()
-## find() findIndex() indexOf() lastIndexOf() includes()
+## find()、findIndex()、indexOf()、 lastIndexOf()、 includes()
 ## join()
 
 `join()` 用于数组的元素拼接成字符串，默认用逗号拼接。
@@ -52,7 +52,7 @@ a.join('-')  // 'a-b-c'
 
 ## keys()
 
-## forEach() map() every() filter() fill() some()
+## forEach()、 map()、 every()、 filter()、 fill()、 some()
 
 `forEach()`, `map()` 都可以对数组进行遍历。区别是前者没有返回值，后者会将每个元素处理后返回一个新数组。
 
@@ -93,7 +93,7 @@ a.fill('a', 1, -2)  // [1, 'a', 3, 4]
     - undefined,undefined 都选中
     - undefined,null/NaN 没有选中
 
-## reduce() reduceRight()
+## reduce()、 reduceRight()
 ## reverse()
 
 将数组反转顺序。
