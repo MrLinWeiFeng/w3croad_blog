@@ -1,5 +1,15 @@
 # git使用总结
 
+地址： `https://git-scm.com/docs/git-reflog`
+
+## 切换版本
+
+```
+git log
+git reflog  可以查看所有分支的所有操作记录，包括 commit 和 reset的操作。
+git checkout fdss22
+```
+
 ## 创建和合并分支
 
 新建并切换到分支。

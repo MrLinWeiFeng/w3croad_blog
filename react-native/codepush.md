@@ -1,14 +1,18 @@
-# 自己搭建codepush热更新
+# 自己搭建codepush热更新服务
+
+服务端`codepush`环境的搭建查看下面的参考资料。
 
 ## 客户端发布
 
 **1、登录**
 
-打开命令行，进入项目目录输入命令登录`code-push-server`
+打开命令行，进入项目目录输入命令登录`code-push-server`服务器。
+
 ```
 code-push login http://api.code-push.com:8080
 ```
-会自动打开网址，登陆后，获取`accessKey`，然后再在命令行输入即可。
+
+上面的命令会自动打开网址，登陆后，获取`accessKey`，然后再在命令行输入即可。
 
 **2、新增要发布的应用**
 
@@ -60,57 +64,57 @@ import codePush from "react-native-code-push"
 
 checkUpdate() {
 
-		// 防止总是rollback  https://github.com/Microsoft/cordova-plugin-code-push/issues/200
-		codePush.notifyApplicationReady()
+    // 防止总是rollback  https://github.com/Microsoft/cordova-plugin-code-push/issues/200
+    codePush.notifyApplicationReady()
 
-		/**
-		 * 安卓和ios的热更新不同，app store说更新不要出现提示框,而google store说是要出现提示框
-		 * - android 提示更新，更新后立即重启
-		 * - ios     静默更新，更新后立即重启
-		 */
-		
-		codePush.checkForUpdate().then((update)=> {
-			console.log(update)
-			
-			if (!update) return;
+    /**
+     * 安卓和ios的热更新不同，app store说更新不要出现提示框,而google store说是要出现提示框
+     * - android 提示更新，更新后立即重启
+     * - ios     静默更新，更新后立即重启
+     */
+    
+    codePush.checkForUpdate().then((update)=> {
+        console.log(update)
+        
+        if (!update) return;
 
-			if (update.isFirstRun && update.description) {
-				Toast.showShortTop('恭喜恭喜，更新成功')
-			}
-			if (Platform.OS == 'ios') {
-				codePush.sync({
-					updateDialog: false,
-					mandatoryInstallMode: codePush.InstallMode.IMMEDIATE,
-				});
-				return
-			}
-			
-			codePush.sync({
-				mandatoryInstallMode: codePush.InstallMode.IMMEDIATE,
-				updateDialog: {
-					title: '更新提示',
-					mandatoryContinueButtonLabel: '更新',
-					mandatoryUpdateMessage: `有新版本${APP_VERSION}了，立即更新？\n`,
-					appendReleaseDescription: true,
-					descriptionPrefix: "更新包大小：" + covertByte(update.packageSize),
-					optionalIgnoreButtonLabel: '忽略',
-					optionalInstallButtonLabel: '更新',
-					optionalUpdateMessage: `有新版本${APP_VERSION}了，立即更新？\n`
-					
-				},
-			}, (status)=> {
-				// switch (status) {
-				// 	case codePush.SyncStatus.DOWNLOADING_PACKAGE:
-				// 		Toast.showShortTop('开始下载')
-				// 		break;
-				// 	case codePush.SyncStatus.INSTALLING_UPDATE:
-				// 		Toast.showShortTop('更新成功了')
-				// 		break;
-				// }
-			});
-		})
-		
-	}
+        if (update.isFirstRun && update.description) {
+            Toast.showShortTop('恭喜恭喜，更新成功')
+        }
+        if (Platform.OS == 'ios') {
+            codePush.sync({
+                updateDialog: false,
+                mandatoryInstallMode: codePush.InstallMode.IMMEDIATE,
+            });
+            return
+        }
+        
+        codePush.sync({
+            mandatoryInstallMode: codePush.InstallMode.IMMEDIATE,
+            updateDialog: {
+                title: '更新提示',
+                mandatoryContinueButtonLabel: '更新',
+                mandatoryUpdateMessage: `有新版本${APP_VERSION}了，立即更新？\n`,
+                appendReleaseDescription: true,
+                descriptionPrefix: "更新包大小：" + covertByte(update.packageSize),
+                optionalIgnoreButtonLabel: '忽略',
+                optionalInstallButtonLabel: '更新',
+                optionalUpdateMessage: `有新版本${APP_VERSION}了，立即更新？\n`
+                
+            },
+        }, (status)=> {
+            // switch (status) {
+            // 	case codePush.SyncStatus.DOWNLOADING_PACKAGE:
+            // 		Toast.showShortTop('开始下载')
+            // 		break;
+            // 	case codePush.SyncStatus.INSTALLING_UPDATE:
+            // 		Toast.showShortTop('更新成功了')
+            // 		break;
+            // }
+        });
+    })
+	
+}
 ```
 
 ## 参考网址

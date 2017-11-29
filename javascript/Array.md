@@ -94,6 +94,51 @@ a.fill('a', 1, -2)  // [1, 'a', 3, 4]
     - undefined,null/NaN 没有选中
 
 ## reduce()、 reduceRight()
+
+`reduce()` 方法对累加器和数组中的每个元素（从左到右）应用一个函数，将其减少为单个值。
+
+```
+// 语法 arr.reduce(function(accumulator, currentValue, currentIndex, array){}, initialValue)
+```
+
+- `callback` 的四个参数：
+    - `accumulator`：累加器累加回调的返回值，它是上一次调用回调时返回的累积值，或`initialValue`
+    - `currentValue`：数组中正在处理的元素
+    - `currentIndex`：数组中正在处理的当前元素的索引，如果提供了 `initialValue`，则索引号为 0，否则为 1。
+    - `array`：调用 `reduce` 的数组
+- `initialValue`：可以提供一个初始值，默认是数组第一个元素。
+```
+
+// 例子
+var a = [7, 2, 3, 4, 5]
+var b = a.reduce(function(accumulator, currentValue, currentIndex, array){
+    console.log('第几次遍历' + currentIndex )
+    console.log(accumulator, currentValue, currentIndex, array)
+
+    return now
+})
+console.log('b', b)
+```
+
+![](img/reduce.png)
+
+`reduce()` 会遍历数组，回调函数的返回值会成为下次遍历的第一个参数now。`initialValue` 默认是数组的第一个元素。在没有初始值的空数组[]上调用reduce会报错。
+
+```
+[].reduce(function(){}, 1)  // 1
+
+var total = [0, 1, 2, 3].reduce(function(sum, value) {
+  return sum + value;
+}, 0);  
+// total = 6
+
+var flattened = [[0, 1], [2, 3], [4, 5]].reduce(function(a, b) {
+  return a.concat(b);
+}, []);
+// flattened is [0, 1, 2, 3, 4, 5]
+```
+
+对数组求和的另外一个方法：`eval(a.join('+'))`
 ## reverse()
 
 将数组反转顺序。
