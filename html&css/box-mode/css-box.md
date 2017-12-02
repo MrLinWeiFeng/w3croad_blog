@@ -28,6 +28,10 @@
 ## 背景
 
 - 背景的属性
+
+```
+background: #fff url() no-repeat top left / 100px 100px;
+```
 - 渐变背景  background-image
     - linear-gradient
     - radius-gradient
