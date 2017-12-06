@@ -1,30 +1,61 @@
+# bom
 
-## bom
+bom的全称是 browser object model，包含浏览器自身的一些信息。它主要包含下面几个部分
 
 - window
-
-window.innerWidth 获取浏览器视口宽度
-
 - location
+- navigator 
+- history
 
+## window
+
+window有2个角色：
+
+1. 它是全局global对象，很对对象都是它的属性，比如location这些对象
+2. 它是浏览器窗口，可以获取窗口的一些信息
+
+**window的常用属性**
+
+```
+window.innerWidth 获取浏览器视口宽度
+window.open()
+```
+
+## location
+
+location表示窗口的地址信息。
+
+```
 location.href 
 location.assign()
 location.reload(true)
 location.host
+```
 
+## navigator
 
-- navigator
+navigator包含了很多浏览器信息，比如版权、用户代理，网络状态等等。
+
+```
 userAgent 浏览器的用户代理字符串
 platform  浏览器所在系统平台
 onLine  // true
 connection  连接网络的信息对象
+```
 
 
 ## history
-length
-go()   history.go(0)刷新页面
-forward()   history.go(1)
-back()      history.go(-1)  通常是从浏览器缓存中加载
+
+history表示浏览器的历史记录。
+
+```
+length 访问记录的长度
+go()   可以跳转到某个历史记录，history.go(0)刷新页面
+forward()   相当于history.go(1)
+back()      相当于history.go(-1)，通常是从浏览器缓存中加载
+```
+
+除了上面的方法之外，h5又新增了 `pushState` 和 `replaceState()`方法，它们主要用来实现现在的单页应用。
 
 **pushState()**
 
