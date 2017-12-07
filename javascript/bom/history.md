@@ -1,32 +1,20 @@
 # bom
 
-bom的全称是 browser object model，包含浏览器自身的一些信息。它主要包含下面几个部分
+bom的全称是 browser object model，包含浏览器自身的一些信息。它主要包含下面几个对象。
 
 - window
 - location
 - navigator 
 - history
 
-## window
 
-window有2个角色：
-
-1. 它是全局global对象，很对对象都是它的属性，比如location这些对象
-2. 它是浏览器窗口，可以获取窗口的一些信息
-
-**window的常用属性**
-
-```
-window.innerWidth 获取浏览器视口宽度
-window.open()
-```
 
 ## location
 
 location表示窗口的地址信息。
 
 ```
-location.href 
+location.href     
 location.assign()
 location.reload(true)
 location.host
