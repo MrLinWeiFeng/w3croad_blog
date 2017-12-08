@@ -92,6 +92,40 @@ window.length 属性与 window.frames.length 相等。
 
 举例来说，如果用户向下拉动了垂直滚动条75像素，那么window.pageYOffset就是75。用户水平向右拉动水平滚动条200像素，window.pageXOffset就是200。
 
+
+### window.screen 
+
+window.screen对象包含了显示设备的信息。
+
+screen.height和screen.width两个属性，一般用来了解设备的分辨率。
+
+```
+// 显示设备的高度，单位为像素
+screen.height // 1920
+
+// 显示设备的宽度，单位为像素
+screen.width // 1080
+```
+
+上面代码显示，某设备的分辨率是1920x1080。
+
+除非调整显示器的分辨率，否则这两个值可以看作常量，不会发生变化。显示器的分辨率与浏览器设置无关，缩放网页并不会改变分辨率。
+
+下面是根据屏幕分辨率，将用户导向不同网页的代码。
+
+```
+if ((screen.width <= 800) && (screen.height <= 600)) {
+  window.location.replace('small.html');
+} else {
+  window.location.replace('wide.html');
+}
+```
+
+`screen.availWidth` 和 `screen.availHeight` 属性返回屏幕可用的宽度和高度，单位是像素。它们的值是屏幕的实际大小减去操作系统某些功能占据的空间，比如系统的任务栏。
+
+`screen.colorDepth` 属性返回屏幕的颜色深度，一般是 16（16-bit）或24 (24-bit)。也就是颜色种类。
+
+
 ## window 对象的方法
 
 ### window.moveTo(), window.moveBy()
