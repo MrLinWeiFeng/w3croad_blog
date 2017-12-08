@@ -34,6 +34,6 @@
 ## react-native
 
 - [自己搭建codepush热更新服务](react-native/codepush.md)
-
+- [ios发布流程](react-native/iso_deploy.md)
 
 ## 读后感
