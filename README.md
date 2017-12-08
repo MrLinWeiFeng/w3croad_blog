@@ -20,7 +20,15 @@
 
 - [数据类型](javascript/数据类型.md)
 - [Array 数组](javascript/Array.md)
-- [BOM](javascript/Bom.md)
+
+### bom
+
+- [window](javascript/bom/window.md)
+- [navigator](javascript/bom/navigator.md)
+- [history](javascript/bom/history.md)
+- [location](javascript/bom/location.md)
+
+### dom
 - [DOM](javascript/Dom.md)
 
 ## react-native
