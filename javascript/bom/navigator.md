@@ -2,6 +2,18 @@
 
 window 对象的 `navigator` 属性，指向一个包含浏览器信息的对象。
 
+## 总览
+
+- navigator.userAgent
+- navigator.plugins
+- navigator.platform
+- navigator.onLine
+- navigator.geolocation
+- navigator.javaEnabled(), navigator.cookieEnabled
+- navigator.connection
+- navigator.vendor
+
+
 ## navigator.userAgent
 
 `navigator.userAgent`属性返回浏览器的`User-Agent`字符串，标志浏览器的厂商和版本信息。
@@ -75,3 +87,7 @@ navigator.geolocation.getCurrentPosition(success, error, options)
     rtt: 400
 }
 ```
+
+## navigator.vendor 
+
+navigator.vendor 返回浏览器公司信息

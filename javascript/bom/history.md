@@ -1,38 +1,4 @@
-# bom
-
-bom的全称是 browser object model，包含浏览器自身的一些信息。它主要包含下面几个对象。
-
-- window
-- location
-- navigator 
-- history
-
-
-
-## location
-
-location表示窗口的地址信息。
-
-```
-location.href     
-location.assign()
-location.reload(true)
-location.host
-```
-
-## navigator
-
-navigator包含了很多浏览器信息，比如版权、用户代理，网络状态等等。
-
-```
-userAgent 浏览器的用户代理字符串
-platform  浏览器所在系统平台
-onLine  // true
-connection  连接网络的信息对象
-```
-
-
-## history
+# history
 
 history表示浏览器的历史记录。
 
