@@ -249,7 +249,7 @@ function checkName(e){
 input.addEventListener('keypress', checkName, false)
 ```
 
-如果监听函数最后返回布尔值false，即return false，浏览器也不会触发默认行为，与preventDefault方法有等同效果。
+> `return false` 阻止默认行为，在使用on(比如el.onclick)绑定方式时有效，addEventListener下无效。它也不能阻止冒泡。
 
 event.stopPropagation() 方法阻止事件在DOM中继续传播，防止再触发定义在别的节点上的监听函数，但是不包括在当前节点上新定义的事件监听函数。
 
@@ -278,7 +278,6 @@ div.dispatchEvent(e)
 
 由于Event不支持带数据，所以有了 `new CustomEvent('drag', {name: 'zs'})` 这样的方法。
 
-
 ## 事件类型
 
 **鼠标类**
@@ -292,6 +291,7 @@ mouseleave
 mouseover   // 移入到子元素会触发mouseout
 mouseout
 mousemove
+oncontextmenu  // 右键
 ```
 
 **键盘**
@@ -314,6 +314,61 @@ load
 unload
 resize
 scroll
+```
+
+## 事件兼容总结
+
+**ie8及以下**
+
+不支持addEventListener和removeEventListener，但是支持 attachEvent 和 detachEvent。而且只支持冒泡，不支持捕获。所以捕获在实际开发中用的很少。
+
+el.onclick的方式，只能通过window.event获取事件对象。attachEvent 可以通过第一个参数event获取到。
+
+阻止事件冒泡，需要使用 `event.cancelBubble = true`。
+阻止默认行为，需要使用 `event.returnValue = false`
+获取目标对象，需要使用 `event.srcElement`
+
+下面是处理兼容的代码。
+
+```
+/**
+ * 修复事件对象不兼容的地方
+ */
+function fixEventObj(e) {
+  e.target = e.target || e.srcElement;
+  e.preventDefault = e.preventDefault || function() {
+    e.returnValue = false;
+  };
+  e.stopPropagation = e.stopPropagation || function() {
+    e.cancelBubble = true;
+  };
+
+  return e;
+}
+
+/**
+ * 跨浏览器的绑定事件
+ */
+function on(elem, type, handle) {
+  if (elem.addEventListener) { // 检测是否有标准方法
+    elem.addEventListener(type, handle, false);
+  } else if (elem.attachEvent) { // 试图使用 `attachEvent`
+    elem.attachEvent('on' + type, function(event) {
+      event = fixEventObj(event);
+      handle.call(elem, event); // 使用 call 来改变 handle 的作用域，使其指向 elem
+    });
+  } else { // 兜底
+    elem['on' + type] = function() {
+      var event = fixEventObj(window.event);
+      handle.call(elem, event);
+    }
+  }
+}
+
+// 调用
+on(document.body, 'click', function(e) {
+  console.log('哈哈哈，好用！', e);
+});
 ```
 
 ## 参考资料

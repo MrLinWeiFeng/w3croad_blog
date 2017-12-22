@@ -29,11 +29,19 @@
 - [location](javascript/bom/location.md)
 
 ### dom
-- [DOM](javascript/Dom.md)
+- [DOM](javascript/dom/dom.md)
+- [事件](javascript/dom/event.md)
 
 ## react-native
 
 - [自己搭建codepush热更新服务](react-native/codepush.md)
 - [ios发布流程](react-native/iso_deploy.md)
+- [react-native-scroll-tab-view](react-native/react_native_scroll_tab_view.md)
+- [react-navigation](react_navigation.md)
 
 ## 读后感
+
+## 博客
+
+- [网络埋伏纪事](http://www.xiaojichao.com/archives/)
+- 
