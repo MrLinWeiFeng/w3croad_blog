@@ -374,3 +374,4 @@ on(document.body, 'click', function(e) {
 ## 参考资料
 
 - http://javascript.ruanyifeng.com/dom/event.html
+- http://javascript.ruanyifeng.com/dom/event-type.html

@@ -223,14 +223,79 @@ window.getSelection() 方法返回一个Selection 对象，表示用户现在选
 使用该对象的 toString() 方法可以得到选中的文本。
 
 
+## 多窗口操作
+
+窗口的引用
+- top
+- parent
+- self
+
+与这些变量对应，浏览器还提供一些特殊的窗口名，供open方法、<a>标签、<form>标签等引用。
+
+_top：顶层窗口
+_parent：父窗口
+_blank：新窗口
+
+对于iframe嵌入的窗口，document.getElementById方法可以拿到该窗口的DOM节点，然后使用contentWindow属性获得iframe节点包含的window对象，或者使用contentDocument属性获得包含的document对象。
+
+`window.parent`引用父窗口，如果当前页面没有父窗口，则`window.parent`属性返回自身。因此，可以通过`window.parent`是否等于`window.self`，判断当前窗口是否为`iframe`窗口。
+
+iframe的window对象的frameElement属性，返回它在父窗口中的DOM节点。对于非嵌入的窗口，返回null。
+
+```
+document.getElementById('iframe').contentWindow.frameElement === document.getElementById('iframe')
+```
+
+window.frames返回iframe组成的类数组，每个成员是框架内的窗口，即(框架的window对象),而不是iframe在父窗口的DOM节点。
+
+```
+window.frames[0] === document.getElementById('iframe').contentWindow
+```
+
+如果iframe元素设置了name或id属性，那么属性值会自动成为全局变量，并且可以通过window.frames属性引用，返回子窗口的window对象。
+
+```
+// HTML代码为<iframe id="myFrame">
+myFrame // [HTMLIFrameElement]
+frames.myframe === myFrame // true
+```
+
+name属性的值会自动成为子窗口的名称，可以用在window.open方法的第二个参数，或者<a>和<frame>标签的target属性。
 
 
+## 事件
 
+- onload 
+- onerror
 
+## URL的编码解码方法
 
+网页URL的合法字符分成两类。
 
+- URL元字符：分号（;），逗号（’,’），斜杠（/），问号（?），冒号（:），at（@），&，等号（=），加号（+），美元符号（$），井号（#）
+- 语义字符：a-z，A-Z，0-9，连词号（-），下划线（_），点（.），感叹号（!），波浪线（~），星号（*），单引号（\），圆括号（()`）
 
+规则是根据操作系统的默认编码，将每个字节转为百分号（%）加上两个大写的十六进制字母。比如，UTF-8的操作系统上，`http://www.example.com/q=春节`这个URL之中，汉字“春节”不是URL的合法字符，所以被浏览器自动转成`http://www.example.com/q=%E6%98%A5%E8%8A%82`。其中，“春”转成了`%E6%98%A5`，“节”转成了“%E8%8A%82”。这是因为“春”和”节“的UTF-8编码分别是E6 98 A5和E8 8A 82，将每个字节前面加上百分号，就构成了URL编码。
 
+encodeURI 方法会将元字符和语义字符之外的字符转义。它的参数通常是这个URL。
+
+```
+encodeURI('http://www.example.com/q=春节')
+// "http://www.example.com/q=%E6%98%A5%E8%8A%82"
+```
+
+encodeURIComponent 会将语义字符之外的字符，元字符也会被转义。因此它的参数通常是URL的路径和参数值。
+
+```
+encodeURIComponent('春节')
+// "%E6%98%A5%E8%8A%82"
+encodeURIComponent('http://www.example.com/q=春节')
+// "http%3A%2F%2Fwww.example.com%2Fq%3D%E6%98%A5%E8%8A%82"
+```
+**方法**
+- alert()
+- prompt(text[, default])
+- confirm()
 
 
 

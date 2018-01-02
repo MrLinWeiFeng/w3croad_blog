@@ -1,4 +1,5 @@
-var a = require('./2.js')
+const a = require('./2.js')
 
-console.log(require.cache)
+console.log(a)
 
+console.log('hello')

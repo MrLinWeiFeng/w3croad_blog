@@ -198,6 +198,8 @@ yum info xxx    // 软件包信息
 - cp    复制
 - mv    移动
 - pwd   显示路径
+- grep "" ./*  查找
+- sed  -i "" "s@from 'antd-mobile'@from 'component/antd-mobile'@g" $a 查找替换 -i表示
 
 **vim**
 
@@ -272,4 +274,19 @@ curl -o baidu.html http://www.baidu.com
 
 ```
 scp 1.txt banli@192.168.56.101:/tmp/
+```
+
+
+## webservers
+
+Apache 和ngix
+
+apache基本操作
+
+在centos里叫httpd,在ubuntu里叫apache
+
+```
+yum install httpd 
+service httpd start
+service httpd stop
 ```
