@@ -1,4 +1,5 @@
 .idea/
 _think/
 .DS_Store
-**/node_modules
+/**/node_modules
+echarts*/
