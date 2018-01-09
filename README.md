@@ -15,11 +15,17 @@
 - [布局之grid](html&css/布局/grid.md)
 - [视觉格式化模型]()
 - [元素水平垂直居中](html&css/布局/position-center)
+- [Canvas](html&css/布局/canvas.md)
 
 ## javascript
 
 - [数据类型](javascript/数据类型.md)
 - [Array 数组](javascript/Array.md)
+- [Date 时间](javascript/Date.md)
+- [Math 数学](javascript/Math.md)
+- [Object](javascript/Object.md)
+- [Promise和异步编程](javascript/Promise和异步编程.md)
+- [错误监控](issue/错误监控.md)
 
 1.ES6/ES7语法和原理实现
    2.异步发展过程：callback、promise、generator、co、async/await等异步流程控制(async和await的实现原理)
@@ -66,27 +72,32 @@
 - [react-navigation](react_navigation.md)
 
 ## 网络相关
+
+- 从输入地址到返回请求
+- http深入和tcp详解
+- 七层网络协议分析
+- TCP连接和Nagle算法
+- 使用`wireshark`学习七层网络协议
+- DNS服务器详解
+
 ## 设计模式
 
-创建型设计模式
-1.工厂模式
-2.建造者模式
-3.原型模式
-4.单例模式
-结构型设计模式
-1.外观模式
-2.适配器模式
-3.代理模式
-4.装饰者模式
-5.组合模式
-行为型设计模式
-1.观察者模式
-2.状态模式
-3.策略模式
-4.命令模式
-5.访问者模式
-6.中介者模式
-5.迭代器模式
+1. 工厂模式
+1. 建造者模式
+1. 原型模式
+1. 单例模式
+1. 外观模式
+1. 适配器模式
+1. 代理模式
+1. 装饰者模式
+1. 组合模式
+1. 观察者模式
+1. 状态模式
+1. 策略模式
+1. 命令模式
+1. 访问者模式
+1. 中介者模式
+1. 迭代器模式
 
 ## 数据结构和算法
 
@@ -158,11 +169,7 @@ websocket&socket.io
 发送消息
 事件
 
-1.http深入和tcp详解
-1.七层网络协议分析
-2.TCP连接和Nagle算法
-3.使用`wireshark`学习七层网络协议
-4.DNS服务器详解
+
 5.Node静态服务器实现与缓存机制的实现
 6.HTTP常用报文的实际应用
 7.Node Stream的应用与文件分片上传策略
