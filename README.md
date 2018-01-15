@@ -1,21 +1,20 @@
 # w3croad_blog
 
-写一些自己的学习笔记、demo、和心得。
+自己之前学习前端的方式太差，都是看视频、看文章、做做例子，缺乏总结和复习，几年下来，虽然知识点知道了很多，但是总是感觉不太扎实。为了让自己稍微扎实些，现在详细的把自己所知道的前端知识体系过一遍，主要是通过查阅大量文章，对每个知识点进行测试和总结。目的是用最简的文字就将一个专题总结清楚，方便复习和查看。
 
-## html + css
+## html5
 
-- [css简介](html&css/css简介.md)
+- [什么是html5语义化?](html/语义化.md)
+- [canvas](html&css/布局/canvas.md)
+
+## css3
+
 - [css选择器](html&css/css选择器.md)
 - [css属性和值](html&css/css属性和值.md)
 - [css盒模型](html&css/box-mode/css-box.md)
-- [布局简介](html&css/布局/basic.md)
-- [布局之float](html&css/布局/float.md)
-- [布局之position](html&css/布局/position.md)
-- [布局之flex](html&css/布局/flex.md)
-- [布局之grid](html&css/布局/grid.md)
+- [css布局详解](html&css/布局/basic.md)
 - [视觉格式化模型]()
 - [元素水平垂直居中](html&css/布局/position-center)
-- [Canvas](html&css/布局/canvas.md)
 
 ## javascript
 
@@ -45,6 +44,10 @@
 - [history](javascript/bom/history.md)
 - [location](javascript/bom/location.md)
 
+
+
+
+
 ### dom
 - [DOM](javascript/dom/dom.md)
 - [事件](javascript/dom/event.md)
@@ -73,12 +76,8 @@
 
 ## 网络相关
 
-- 从输入地址到返回请求
-- http深入和tcp详解
-- 七层网络协议分析
-- TCP连接和Nagle算法
-- 使用`wireshark`学习七层网络协议
-- DNS服务器详解
+- 七层网络协议分析、使用`wireshark`学习七层网络协议、DNS服务器详解、tcp详解 TCP连接和Nagle算法
+- http深入
 
 ## 设计模式
 
@@ -117,6 +116,45 @@
 6.二叉树搜索算法
 7.青蛙跳台阶问题-动态规划算法
 8.React虚拟DOM Diff算法实现
+
+## 工程化
+
+less sass stylus postcss
+
+调试工具 
+chrome devtools https://developer.chrome.com/devtools
+
+Charles
+
+eslint
+csslint
+html validators
+
+单元测试
+mocha/jest
+
+自动化测试
+webdriver
+karma runner
+
+JSDoc
+
+commonJs/AMD/CMD
+
+require.js
+
+安全
+csrf/xss
+CSP
+Same-origin policy
+ADsafe/Caja/Sandbox
+
+可视化
+SVG/Canvas/VML
+SVG: D3/Snap.svg/DataV
+Canvas: CreateJS/KineticJS
+WebGL/Three.JS
+
 
 ## Node
 
@@ -368,4 +406,5 @@ vue­cli快速生成项目，并集成vue­router,vue­resource
 ## 博客
 
 - [网络埋伏纪事](http://www.xiaojichao.com/archives/)
-- 
+- [riskers](https://github.com/riskers/blog/issues)
+- [fouber张云龙](https://github.com/fouber/blog)

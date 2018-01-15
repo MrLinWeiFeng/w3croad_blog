@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        #wrapper {
+            width: 100%;
+            height: 500px;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+
+        #inner {
+            width: 600px;
+            height: 500px;
+            background: darkgreen;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <div id="inner">
+        <img src="http://www.ruanyifeng.com/blogimg/asset/201206/bg2012061110.jpg" alt="">
+    </div>
+</div>
+<script src="http://alloyteam.github.io/AlloyTouch/transformjs/transform.js"></script>
+<script src="http://alloyteam.github.io/AlloyTouch/alloy_touch.js"></script>
+<script>
+    var wrapper = document.getElementById('wrapper')
+    var inner = document.getElementById('inner')
+
+    Transform(inner)
+
+    new AlloyTouch({
+        touch: '#inner',
+        vertical: false,
+        target: inner,
+        property: 'translateX',
+        min: -parseInt(getComputedStyle(inner, null).width) + window.innerWidth,
+        max: 0,
+        step: 10,
+        spring: true,
+        inertia: true
+
+    })
+
+
+</script>
+</body>
+</html>

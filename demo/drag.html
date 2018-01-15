@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        #wrapper {
+            width: 100%;
+            height: 500px;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+
+        #inner {
+            width: 600px;
+            height: 500px;
+            background: darkgreen;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <div id="inner">
+        <img src="http://www.ruanyifeng.com/blogimg/asset/201206/bg2012061110.jpg" alt="">
+    </div>
+</div>
+<script>
+    var wrapper = document.getElementById('wrapper')
+    var inner = document.getElementById('inner')
+
+    // 获取可移动范围
+    var minX = -parseInt(getComputedStyle(inner, null).width) + window.innerWidth
+    var maxX = 0
+    var resX = 0
+    var extraX = 80
+
+    wrapper.addEventListener('touchstart', wrapperStart)
+
+    function documentMove(e, sx, transX) {
+        // 记录鼠标位置
+        var mx = e.touches[0].clientX
+
+        // 应该移动的距离
+        var delX = mx - sx
+
+        resX = transX + delX
+        if (resX <= minX) {
+            resX = minX + delX * 0.15
+        }
+        if (resX >= maxX) {
+            resX = maxX + delX * 0.15
+        }
+
+        inner.style.transform = 'translateX(' + resX + 'px)'
+    }
+    function getTransX() {
+        var transX  // 手指按下时起始的transform
+        try {
+            transX = parseInt(/(\-*\d+)/.exec(inner.style.transform)[0])
+        } catch (ex) {
+            transX = 0
+        }
+        return transX
+    }
+    function wrapperStart(e) {
+        var transX = getTransX()
+
+        // 记录起始位置
+        var sx = e.touches[0].clientX
+        document.addEventListener('touchmove', function (e) {
+            documentMove(e, sx, transX)
+        })
+
+        e.preventDefault()
+    }
+
+    document.addEventListener('touchend', function () {
+        // 将wrapper归位
+        if (resX <= minX) {
+            inner.style.transform = 'translateX(' + minX + 'px)'
+        }
+        if (resX >= maxX) {
+            inner.style.transform = 'translateX(' + maxX + 'px)'
+        }
+
+        document.removeEventListener('touchmove', documentMove)
+    })
+
+</script>
+</body>
+</html>

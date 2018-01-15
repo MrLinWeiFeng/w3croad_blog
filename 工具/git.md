@@ -57,3 +57,8 @@ git commit -m "提交"
 ```
 git config --global core.quotepath false
 ```
+
+
+## 参考资料
+
+- [git book pro](https://git-scm.com/book/zh/v2)
