@@ -26,6 +26,12 @@
 - [Promise和异步编程](javascript/Promise和异步编程.md)
 - [错误监控](issue/错误监控.md)
 
+
+- [性能优化]
+- [网络基础]
+- [前端安全]
+- [前端工程化]
+- [测试]
 1.ES6/ES7语法和原理实现
    2.异步发展过程：callback、promise、generator、co、async/await等异步流程控制(async和await的实现原理)
    3.promise设计模式原理及在es6中的应用，手写一个符合promise A+规范的promise实现
