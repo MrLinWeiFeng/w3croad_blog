@@ -62,3 +62,9 @@ git config --global core.quotepath false
 ## 参考资料
 
 - [git book pro](https://git-scm.com/book/zh/v2)
+
+
+
+教学全程使用git实现协同开发
+深入学习和使用git
+代码管理思想

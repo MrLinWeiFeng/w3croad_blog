@@ -15,3 +15,7 @@
 - [Promises/A+规范](https://promisesaplus.com/)
 - [Promise/A+规范中文版](https://segmentfault.com/a/1190000002452115)
 - [史上最易读懂的 Promise/A+ 完全实现](https://zhuanlan.zhihu.com/p/21834559)
+
+
+2.异步发展过程：callback、promise、generator、co、async/await等异步流程控制(async和await的实现原理)
+   3.promise设计模式原理及在es6中的应用，手写一个符合promise A+规范的promise实现
