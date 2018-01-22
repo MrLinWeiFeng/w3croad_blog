@@ -11,17 +11,17 @@
 1. [css布局详解](html&css/布局/basic.md)
 1. [视觉格式化模型]()
 1. [元素水平垂直居中](html&css/布局/position-center)
-1. [数据类型](javascript/数据类型.md)
+1. [数据类型](基础/js/数据类型.md)
 1. [js - 内置对象 Array、Date、Math、Object]
 1. [js - 函数详解]
 1. [js - BOM对象 window、navigator、history、location]
-1. [js - DOM详解](javascript/dom/dom.md)
-1. [js - 事件详解](javascript/dom/event.md)
+1. [js - DOM详解](基础/js/dom/dom.md)
+1. [js - 事件详解](基础/js/dom/event.md)
 1. [js - 搞定ajax]
 1. [js - 正则表达式]
-1. [面向对象]
+1. [面向对象](基础/js/面向对象.md)
 1. [内存管理]
-1. [Promise和异步编程](javascript/Promise和异步编程.md)
+1. [Promise和异步编程](基础/js/Promise和异步编程.md)
 1. [错误监控](issue/错误监控.md)
 1. [性能优化]()
 1. [网络基础]()
@@ -67,10 +67,9 @@
 
 ## 数据结构和算法
 
-1. 时间复杂度和空间复杂度
-3. 常见排序算法
+1. [算法简介](数据结构和算法/算法简介.md)
+3. [常见排序算法](数据结构和算法/排序算法.md)
 1. 冒泡排序、优化
-2. 选择排序
 3.插入排序
 4.归并排序
 5.快速排序式

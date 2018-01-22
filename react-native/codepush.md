@@ -1,5 +1,55 @@
 # 自己搭建codepush热更新服务
 
+## 增加codepush功能
+
+### android版本
+
+1. 在`android/local.properties`中保存`codepush`的key值。
+
+```
+// 查看key值
+code-push deployment ls <appName> -k
+
+// 在local.properties中添加key
+code_push_key_production=xxx
+code_push_key_staging=xxx
+```
+
+2. 在`android/app/build.gradle`中添加下面代码。
+
+```
+buildTypes {
+    staging {                // 新增
+        minifyEnabled enableProguardInReleaseBuilds
+        proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        signingConfig signingConfigs.release
+
+        buildConfigField "String", "CODEPUSH_KEY", '"'+properties.getProperty("code_push_key_staging")+'"'
+    }
+
+    release {
+        minifyEnabled enableProguardInReleaseBuilds
+        proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        signingConfig signingConfigs.release
+
+        buildConfigField "String", "CODEPUSH_KEY", '"'+properties.getProperty("code_push_key_production")+'"'   // 新增
+    }
+}
+```
+
+buildTypes中的参数可以让我们新增一个命令打包对应的版本，新增了一项staging后，就可以使用命令`./gradlew assembStaging`来打包staging版本。
+
+3. 在`MainApplication.java`中新增。
+
+```
+protected List<ReactPackage> getPackages() {
+      return Arrays.<ReactPackage>asList(
+            new MainReactPackage(),
+            new CodePush(BuildConfig.CODEPUSH_KEY, MainApplication.this, BuildConfig.DEBUG,"codepush服务器地址，如http://2.2.2.2:3000/"),  // 新增
+      );
+}
+```
+
 服务端`codepush`环境的搭建查看下面的参考资料。
 
 ## 客户端发布
@@ -42,7 +92,9 @@ code-push release-react xxx-ios ios -d Production --targetBinaryVersion 2.1.1 --
 ```
 
 **4、其它的一些命令**
+
 ```
+code-push app ls  // 查看app版本
 code-push deployment rename <appName> 重命名
 code-push deployment rm <appName> 删除部署
 code-push deployment ls <appName> 列出应用的部署情况
@@ -123,3 +175,11 @@ checkUpdate() {
 - https://github.com/lisong/code-push-demo-app 
 - https://github.com/Microsoft/react-native-code-push
 - https://github.com/Microsoft/react-native-code-push/blob/master/docs/api-js.md
+
+
+
+js无法加载。
+```
+react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+```
+
