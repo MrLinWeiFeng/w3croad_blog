@@ -330,9 +330,9 @@ Mutation Observer的特点：
 
 
 
+封装DOM动画类库（一） http://ife.baidu.com/course/detail/id/52
 
-
-
+封装DOM动画类库（二）http://ife.baidu.com/course/detail/id/53
 
 
 

@@ -290,3 +290,18 @@ yum install httpd
 service httpd start
 service httpd stop
 ```
+
+
+
+
+
+
+用指定软件打开文件
+
+```
+open -a /Applications/WebStorm.app/ Desktop/MyProject/card/
+如果使用频繁，还可以添加软连接
+
+sudo ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/bin/sublime
+```
+这样输入`sublime 1.txt `就可以打开文件了

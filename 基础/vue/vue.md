@@ -21,3 +21,10 @@ vue全家桶
 vue­cli快速生成项目，并集成vue­router,vue­resource
 使用vuex实现数据状态的统一管理
 应用mintUI elementUI
+
+
+[动态数据绑定（一）](http://ife.baidu.com/course/detail/id/15)
+动态数据绑定（二）http://ife.baidu.com/course/detail/id/20
+动态数据绑定（三）http://ife.baidu.com/course/detail/id/21
+动态数据绑定（四）http://ife.baidu.com/course/detail/id/22
+动态数据绑定（五）http://ife.baidu.com/course/detail/id/24

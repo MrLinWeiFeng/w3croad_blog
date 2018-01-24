@@ -371,6 +371,8 @@ on(document.body, 'click', function(e) {
 });
 ```
 
+自定义网页右键菜单 http://ife.baidu.com/course/detail/id/26
+
 ## 参考资料
 
 - http://javascript.ruanyifeng.com/dom/event.html

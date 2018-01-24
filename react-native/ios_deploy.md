@@ -31,3 +31,8 @@ http://ydimage.yidianhulian.com/
 ## 参考文章
 
 - http://www.jianshu.com/p/1d03f8f31f58?nomobile=yes
+
+
+## 加速审核
+
+- https://developer.apple.com/contact/app-store/?topic=expedite

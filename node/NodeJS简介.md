@@ -10,3 +10,18 @@ js的用途：
 
 
 - 事件机制 和异步IO模型
+
+
+
+- [Node.js 包教不包会](https://github.com/alsotang/node-lessons)
+网页抓取分析服务系列之一（基础分析） http://ife.baidu.com/course/detail/id/85
+网页抓取分析服务系列之二（设备模拟） http://ife.baidu.com/course/detail/id/86
+网页抓取分析服务系列之三（服务封装） http://ife.baidu.com/course/detail/id/87
+网页抓取分析服务系列之四（数据交互） http://ife.baidu.com/course/detail/id/88
+网页抓取分析服务系列之五（并发控制） http://ife.baidu.com/course/detail/id/89
+
+
+ 
+综合实战：在线德州扑克（一）http://ife.baidu.com/course/detail/id/120
+综合实战：在线德州扑克（二） http://ife.baidu.com/course/detail/id/121
+综合实战：在线德州扑克（三） http://ife.baidu.com/course/detail/id/122
