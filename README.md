@@ -4,21 +4,29 @@
 
 ## 基础知识
 
+**html**
+
 1. [什么是html5语义化?](html/语义化.md)
+
+**css**
+
 1. [css选择器](html&css/css选择器.md)
 1. [css属性和值](html&css/css属性和值.md)
 1. [css盒模型](html&css/box-mode/css-box.md)
 1. [css布局详解](html&css/布局/basic.md)
 1. [视觉格式化模型]()
 1. [元素水平垂直居中](html&css/布局/position-center)
+
+**js**
+
 1. [数据类型](基础/js/数据类型.md)
-1. [js - 内置对象 Array、Date、Math、Object]
-1. [js - 函数详解]
-1. [js - BOM对象 window、navigator、history、location]
-1. [js - DOM详解](基础/js/dom/dom.md)
-1. [js - 事件详解](基础/js/dom/event.md)
-1. [js - 搞定ajax]
-1. [js - 正则表达式]
+1. [内置对象 Array、Date、Math、Object]
+1. [函数详解]
+1. [BOM对象 window、navigator、history、location]
+1. [DOM详解](基础/js/dom/dom.md)
+1. [事件详解](基础/js/dom/event.md)
+1. [搞定ajax]
+1. [正则表达式](基础/js/正则表达式.md)(已完成)
 1. [面向对象](基础/js/面向对象.md)
 1. [内存管理]
 1. [Promise和异步编程](基础/js/Promise和异步编程.md)
@@ -98,7 +106,7 @@
 ## Node
 
 1. NODE原理与解析
-1. [REPL交互环境](node/REPL交互环境)
+1. [REPL交互环境](node/REPL交互环境.md)
 1. 模块与NPM
 1. Buffer缓存区
 1. fs文件操作
@@ -108,7 +116,7 @@
 1. HTTP&HTTPS
 1. 进程与集群
 1. 网络安全
-1. [做一个爬虫](node/做一个爬虫)
+1. [做一个爬虫](node/做一个爬虫.md)
 1. Express
 1. 路由
 1. 中间件
