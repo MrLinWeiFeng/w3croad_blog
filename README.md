@@ -25,8 +25,8 @@
 1. [BOM对象 window、navigator、history、location]
 1. [DOM详解](基础/js/dom/dom.md)
 1. [事件详解](基础/js/dom/event.md)
-1. [搞定ajax]
-1. [正则表达式](基础/js/正则表达式.md)(已完成)
+1. [搞定ajax](基础/js/ajax.md)
+1. [正则表达式](基础/js/regexp.md)(已完成)
 1. [面向对象](基础/js/面向对象.md)
 1. [内存管理]
 1. [Promise和异步编程](基础/js/Promise和异步编程.md)
