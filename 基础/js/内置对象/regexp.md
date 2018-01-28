@@ -36,21 +36,40 @@ var str = 'aa\nbcd'
 reg.test(str) // true
 ```
 
+如果要获取标识符，则使用flags属性。
+
+```
+/foo/ig.flags;   // "gi"
+```
+
 ## 字符含义解释
 
 - () 的作用是提取匹配的字符串，也叫子表达式
 - [] 定义匹配的范围，比如[a-zA-Z0-9]
-- {} 表示匹配的长度，比如\n{3}表示匹配3个数字，\d{1, 3}表匹配1-3个数字，\d{3,}表示匹配3个以上数字
 - ^ 和 $ 表示开始和结尾，注意如果^出现在[]中，表示取反
 - \d 非负数字，等价于[0-9]
 - \s 空白字符
-- \w 英文字符或数字，等价于[a-zA-Z0-9]
+- \w 英文字符或数字，等价于[a-zA-Z0-9_]
 - . 除了换行以外的任意字符，等价于[^\n]
+- \b 单词边界，不代表任何字符。所以/\w\b\w/不能匹配任何字符。
+- \B 非单词边界
+- |  选择符，表示或者
+- \r  回车符
+- \W [^A-Za-z0-9_]
+
+**量词**
+
+用来表示数量的字符。
+
 - * 表示匹配0次或多次，比如\d*，表示0个或多个数字
 - + 表示匹配1次或多次
 - ? 表示0次或1次，相当于{0, 1}
-- $1-$9 存放着最近一次匹配9个子表达式结果，如果没有则是空字符串`""`。replace第二个参数可以省略RegExp，其它地方使用需加上。
-- \1-   表示反向引用，表示和对应子表达式一样，和$1-$9区别是，它只能在正则表达式里面使用。
+- {} 表示匹配的长度，比如\n{3}表示匹配3个数字，\d{1, 3}表匹配1-3个数字，\d{3,}表示匹配3个以上数字
+
+**存储**
+
+- RegExp.$1 - RegExp.$9 存放着最近一次匹配9个子表达式结果，如果没有则是空字符串`""`。
+- \n   如果n是正整数表示反向引用，比如\1,表示和对应子表达式一样。
 ```
 /(\d)(\d)/.test('15helo')
 
@@ -90,6 +109,7 @@ var new_str2 = str1.replace(reg2, (...args)=> {
 [ '11', '1', '1', 5, '2018-11-12' ]
 [ '12', '1', '2', 8, '2018-11-12' ]
 ```
+replace第二个参数还有一些符号有特殊含义，比如: $1 - $99，$& 表示整个匹配字符串，$`是匹配字符串左侧文本，$'是右侧文本。$$是直接量符号。
 
 **正则方法**
 
@@ -98,7 +118,60 @@ var new_str2 = str1.replace(reg2, (...args)=> {
 
 ## 贪婪匹配和非贪婪匹配
 
+默认情况下正则会匹配更多的字符，这叫做贪婪匹配。
+
+```
+var a = 'hellox'
+var reg = /(l+)/
+var c = a.match(reg)
+console.log(RegExp.$1)   // ll
+```
+
+上面的例子匹配了更多的l:`ll`，而没有只匹配一个l，这就是贪婪匹配。
+
+如果要匹配l，则是非贪婪匹配，需要在`+`这种量词后面加上`?`即可。
+
+```
+var a = 'hellox'
+var reg = /(l+?)/
+var c = a.match(reg)
+console.log(RegExp.$1)   // l
+```
+
+## 匹配不捕获
+
+`?:`表示匹配但不捕获。
+
+```
+// 例1
+var m = 'abc'.match(/(?:.)b(.)/);
+m // ["abc", "c"]
+
+// 例2，匹配foo，或foofoo
+var a = /(?:foo){1, 2}/
+```
+
 ## 正向预查和反向预查
+
+- x(?=y)  先行断言，x只有在y前面才匹配，y不会被计入返回结果。
+- x(?!y)  先行否定断言，x只有不在y前面才匹配，y不会被计入返回结果。
+- x(?<=y) 后行断言
+- x(?<!y) 后行否定断言
+
+```
+// 先行断言，转化货币格式
+'9999999'.replace(/\d{1,3}(?=\d{3}+)/, '$&,')
+
+// 先行否定断言
+var a = 'hello nihao xhell'
+var reg = /\b\w+(?!\b)/g
+console.log(a.match(reg))  //[ 'hell', 'niha', 'xhel' ]
+
+// 后行断言
+/(?<=\$)\d+/.exec('Benjamin Franklin is on the $100 bill')  
+// 结果["100", index: 29, input: "Benjamin Franklin is on the $100 bill"]
+```
+
 
 ## 常用正则表达式
 
@@ -183,42 +256,18 @@ function htmlEncode(str) {
 }
 ```
 
+## 实战
 
-https://regexper.com/
+- [正则表达式之简易markdown文件解析器](http://ife.baidu.com/course/detail/id/30)
+- [正则表达式之入门](http://ife.baidu.com/course/detail/id/29)
 
- 正则表达式
-    正则表达式，又称规则表达式，查找匹配某些符合规则的字符串，正则表达式就是写这种规则的工具。课程包括创建正则表达式、表达式规则（普通字符，元字符）、修饰符（影响整个正则规则的特殊符号）、正则的方法（执行一个检索，用来查看正则表达式与指定的字符串是否匹配）、字符串的方法：search()，match()，replace()、元字符：\d，\s，\w、边界符：\b，^，$、数词量：{n}，{n,m}、分组、字符集合：中文[\u4e00-\u9fa5]，ASCII码等。
-   
-   
-   第一章 正则表达式的常用方法
-       正则表达式的介绍
-       规则、模式、强大的字符串匹配工具
-       定义正则：new RegExp(“a”)、字面量
-       正则.test()
-       str.search()
-       字符串.match()
-       字符串.replace()
-       【实例】找出字符串中的所有数字
-       【实例】：敏感词过滤
-       第二章 深入正则表达式的细节
-       子项()
-       任意字符
-       范围类 []
-       限定类 {}
-       【实例】日期格式化
-       
-       
-       
-       
-       
-       
-       
        
 ## 参考文章
 
+- [mdn RegExp标准库](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
 - [JavaScript 中的正则表达式](http://www.cnblogs.com/onepixel/p/5218904.html)
 - [RegExp对象](http://javascript.ruanyifeng.com/stdlib/regexp.html)
-- [正则表达式之简易markdown文件解析器](http://ife.baidu.com/course/detail/id/30)
-- [正则表达式之入门](http://ife.baidu.com/course/detail/id/29)
 - [正则表达式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions#%E4%BD%BF%E7%94%A8%E6%8B%AC%E5%8F%B7%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D)
 - [精通 JS正则表达式](http://www.cnblogs.com/aaronjs/archive/2012/06/30/2570970.html)
+- [regexper工具](https://regexper.com/)
+
