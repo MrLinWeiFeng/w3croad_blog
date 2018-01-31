@@ -58,3 +58,5 @@ CSS3实现3D 轮播图http://ife.baidu.com/course/detail/id/51
 任务十一：移动Web页面布局实践 http://ife.baidu.com/course/detail/id/116
 
 任务十二：学习CSS 3的新特性  http://ife.baidu.com/course/detail/id/117
+
+- [理解CSS布局和BFC](https://www.w3cplus.com/css/understanding-css-layout-block-formatting-context.html)

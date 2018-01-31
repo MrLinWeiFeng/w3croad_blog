@@ -90,3 +90,4 @@ function count(){
 - [Timeline，快捷性能优化工具](https://www.jianshu.com/p/b8cdcd9bfad8)
 - [如何使用 Timeline 工具](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)
 - [chrome调试工具官网](https://developer.chrome.com/devtools)
+- [Chrome 开发者工具中文文档](http://www.css88.com/doc/chrome-devtools/)

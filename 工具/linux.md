@@ -198,8 +198,10 @@ yum info xxx    // 软件包信息
 - cp    复制
 - mv    移动
 - pwd   显示路径
-- grep "" ./*  查找
+- grep -r "xx" ./*  查找，-r相当于 -d recurse，-d表示查找目录而非文件，recurse表示递归。
 - sed  -i "" "s@from 'antd-mobile'@from 'component/antd-mobile'@g" $a 查找替换 -i表示
+
+**更多资料**参考[Linux命令大全](http://man.linuxde.net/grep)
 
 **vim**
 

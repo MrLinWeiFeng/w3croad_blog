@@ -9,5 +9,5 @@ const range = (n, x, y) => {
 	}
 }
 
-range(20, 1, 30)
+range(20000, 1, 1000000000)
 module.exports = arr
