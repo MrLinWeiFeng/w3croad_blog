@@ -2,6 +2,7 @@ const randomArr = require('./randomArr')
 const selectionSort = require('./selectionSort')
 const insertionSort = require('./insertionSort')
 const insertionSort1 = require('./insertionSort1')
+const mergeSort = require('./mergeSort')
 
 const performanceSort = (fn, arr) => {
 	console.time('sort')
@@ -13,3 +14,4 @@ const performanceSort = (fn, arr) => {
 performanceSort(insertionSort1, randomArr)
 performanceSort(insertionSort, randomArr)
 performanceSort(selectionSort, randomArr)
+performanceSort(mergeSort, randomArr)
