@@ -67,6 +67,17 @@ el[attr~=value]：属性中包含值，会选中 class="top fs"
 el[attr|=value]：div[class|=top]会选中 class="top"(全等) 以及 class="top-fs"（有横线）这样的元素
 ```
 
+
+## css优先级顺序如下：
+   
+   ```
+   !important > style > id > class(属性选择器、伪类选择器) > 元素选择器（伪元素） > * > 浏览器默认 > 继承
+   ```
+   
+   - 有人测试256个class才可以比过一个id。
+   - 如果权重值相等，后声明的优先。
+   
+   
 ## 参考资料
 
 - https://www.w3.org/TR/selectors/#selectors

@@ -231,6 +231,15 @@ useradd与adduser都是创建新的用户
 
 2、adduser在使用该命令创建用户是会在/home下自动创建与用户名同名的用户目录，系统shell版本，会在创建时会提示输入密码，更加友好。
 
+新建用户后，登录，发现报错`Permission denied (publickey,gssapi-keyex,gssapi-with-mic).`需要用root权限将允许密码登录设置为yes。
+
+```
+vim /etc/ssh/sshd_config
+passwordAuthentication yes // 修改为yes
+service sshd restart
+```
+
+
 **防火墙设置**
 
 - 作用是保护服务器，
@@ -277,7 +286,6 @@ curl -o baidu.html http://www.baidu.com
 ```
 scp 1.txt banli@192.168.56.101:/tmp/
 ```
-
 
 ## webservers
 

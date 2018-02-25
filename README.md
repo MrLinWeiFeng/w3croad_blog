@@ -21,21 +21,14 @@
 
 ## 基础知识
 
-**html**
 
 1. [什么是html5语义化?](html/语义化.md)
-
-**css**
-
 1. [css选择器](html&css/css选择器.md)
 1. [css属性和值](html&css/css属性和值.md)
 1. [css盒模型](html&css/box-mode/css-box.md)
 1. [css布局详解](html&css/布局/basic.md)
 1. [视觉格式化模型]()
 1. [元素水平垂直居中](html&css/布局/position-center)
-
-**js**
-
 1. [数据类型](基础/js/数据类型.md)
 1. [内置对象 Array、Date、Math、Object]
 1. [函数详解]
@@ -45,35 +38,32 @@
 1. [搞定ajax](基础/js/ajax.md)
 1. [正则表达式](基础/js/regexp.md)(4)
 1. [面向对象](基础/js/面向对象.md)
-1. [内存管理]
+1. [内存管理](基础/js/内存管理.md)
 1. [Promise和异步编程](基础/js/Promise和异步编程.md)
 1. [错误监控](issue/错误监控.md)
-1. [性能优化]()
-1. [网络基础]()
+1. [网络知识概述](性能与工程化/网络知识概述.md)
+1. [http详解](性能与工程化/http详解.md)
+1. [浏览器渲染原理](性能与工程化/浏览器渲染原理.md)
+1. [性能优化指南](性能与工程化/性能优化指南.md)
+1. [模块化开发](性能与工程化/模块化开发.md)
+1. [require.js](性能与工程化/requirejs.md)
+1. [gulp指南](性能与工程化/gulp.md)
+1. [webpack指南](性能与工程化/webpack.md)
+1. [测试理论](性能与工程化/测试理论.md)
+1. [测试实战jest](性能与工程化/测试实战jest.md)
+1. [UI测试](性能与工程化/UI测试.md)
 1. [前端安全]()
-1. [可视化开发 - canvas]()
-1. [前端工程化 - 模块化开发和require.js]()
-1. [前端工程化 - 思想]()
-1. [前端工程化 - gulp]()
-1. [前端工程化 - webpack打包]()
-1. [前端工程化 - eslint代码验证]()
-1. [前端工程化 - eslint]()
-1. [前端工程化 - 单元测试]()
-1. [前端工程化 - UI测试]()
-1. [前端工具 - webstorm]()
-1. [前端工具 - chrome调试工具](工具/chrome-devtools.md)
-1. [性能优化 - 网络基础](工具/charles.md)
-1. [性能优化 - 浏览器渲染原理](工具/charles.md)
-1. [性能优化 - 策略大全](工具/charles.md)
-1. [前端安全 - 策略大全](工具/charles.md)
+1. [canvas基础知识]()
+1. [canvas实战之射击小游戏]()
+1. [开始使用eslint]()
+1. [webstorm]()
+1. [深入学习chrome调试工具](工具/chrome-devtools.md)
 1. [精通vue]
 1. [精通react]
 1. [jsdoc]
-
-**其它**
-
 - [如何做一个动画(上)](基础/html&css/动画/如何做一个动画(上).md)
 - [从零开始做个swiper.js(一)]()
+- [搞定移动web开发(一)]()
 
 ## 设计模式
 
@@ -93,7 +83,6 @@
 1. 访问者模式
 1. 中介者模式
 1. [迭代器模式](设计模式/迭代器模式.md)
-
 
 ## 数据结构和算法
 

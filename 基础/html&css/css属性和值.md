@@ -73,10 +73,6 @@ ff -> 15*16 + 15
 - transparent
 - rgba() , `alpha-channel`透明度通道。
 
-
-
-
-
 ## 列表属性list-style
 
 list-style 是三个属性的简写
