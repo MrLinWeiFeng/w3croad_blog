@@ -52,14 +52,18 @@ babel --no-babelrc script.js --out-file script-compiled.js --presets=es2015,reac
 
 ## babel-register
 
-`babel-register`用来将babel注册到node模块中，之后它会自动将所有`require()`的模块进行编译执行，不需要我们手动转码了再执行。
+babel-register模块改写require命令，为它加上一个钩子。此后，每当使用require加载.js、.jsx、.es和.es6后缀名的文件，就会先用Babel进行转码。
+
+使用时，必须首先加载babel-register。
 
 ```
-require('babel-register')
-require('1.js')  // 会被编译
+require("babel-register");
+require("./index.js");
 ```
 
-注意不能把`babel-register`写在`1.js`中，即注册和执行代码不能写一个文件中。否则`1.js`不会被编译。
+然后，就不需要手动对index.js转码了。
+
+需要注意的是，`babel-register`只会对require命令加载的文件转码，而不会对当前文件转码。另外，由于它是实时转码，所以只适合在开发环境使用。
 
 不过现在`node8`都已经支持`es6`语法了，所以不太需要这货。
 
@@ -136,7 +140,7 @@ babel 可以编译所有的新语法，但是API不能保证。
 
 `babel-polyfill`用来将新API，比如做一个`Array.from`垫片。babel的垫片库是[core-js](https://github.com/zloirock/core-js)。要使用它，只需要在文件顶部加入`import "babel-polyfill"`即可。
 
-- babel-runtime 里实现了es6的一些方法，比如class等。如果没有用它，babel会将这些写法转成函数_classCallCheck，每个文件中都会有重复的代码。通过安装`babel-plugin-transform-runtime`可以将它们提取出来，每个文件里都变成`import`形式。
+- babel默认会将新语法比如class转成函数_classCallCheck，但是每个模块文件都会新生成一遍。通过启用`babel-plugin-transform-runtime`可以在转化时require调用`babel-runtime`里面的方法，达到复用。
 
 ```
 // 提取出来是依赖babel-runtime的
@@ -273,7 +277,7 @@ let {code} = generator(ast)
 - [剖析Babel——Babel总览](http://www.alloyteam.com/2017/04/analysis-of-babel-babel-overview/)
 - [Node.js中require的工作原理浅析](http://www.jb51.net/article/51476.htm)
 - [babel官网](http://babeljs.io/docs/plugins/)
-
+- [babel的polyfill和runtime的区别](https://segmentfault.com/q/1010000005596587)
 
 
 
