@@ -1,0 +1,13 @@
+html {
+  background: #ccc;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  background: red;
+}
+
+body {
+  font-size: 30px;
+}

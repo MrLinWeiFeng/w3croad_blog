@@ -1,0 +1,16 @@
+html{
+    background: #ccc;
+}
+ul{
+    font-size:11px;
+}
+
+.box{
+    width:200px;
+    height:200px;
+    background: red;
+}
+
+.small-box{
+    width:300px;
+}

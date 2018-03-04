@@ -282,10 +282,19 @@ plugins: [
 
 ## 处理css
 
-- style-loader：可以创建style标签
+之前是直接link，现在模块化开发每个模块都有对应的html、css、js，使用时，是在js中引入css。
+
+1. 如何引入css
+2. css module
+3. 使用less和sass
+4. 提取css代码：一方面可以利用缓存，第二个方面多个js引入同一个css，这个css会打包到每个css中，所以需要提取。
+
+- style-loader：可以创建style标签到页面中
     - style-loader/url
     - style-loader/useable
 - css-loader：可以在js中直接import css
+
+**style-loader**
 
 ```
 module: {
@@ -307,7 +316,7 @@ module: {
 
 上面的loader处理是倒序的，先用css-loader，再style-loader。效果是在页面中插入style标签。
 
-如果要插入link标签。
+`style-loader/url`可以在页面中插入link标签。
 
 ```
 module: {
@@ -327,9 +336,11 @@ module: {
 }
 ```
 
-这种方法并不常用，因为它会将每个import的css都link一遍，增加了http请求。
+这种方法并不常用，因为它会将每个import的css都link一遍，增加了http请求，如下图。
 
-通过useable控制css是否启用
+![](./img/webpack/1.png)
+
+使用`style-loader/useable`可以用js来控制css是否启用。
 
 ```
 module: {
@@ -349,16 +360,16 @@ module: {
 }
 
 // 然后在js中
-import base from './css/base.css'
+import base from './css/base.css'  // 默认不启用，需要开启base.use()
 base.use()
 base.unuse()
 ```
 
-options: 
-- insertAt：插入位置
-- insertInto：插入到dom
-- singleton：是否只用一个style标签
-- transform：返回一个函数，在style-loader插入style时执行，在浏览器中执行，所以可以判断浏览器，然后进行一些操作
+`style-loader`还有下面一些配置：
+- insertAt：插入位置，默认是`bottom`，还可以是`top`
+- insertInto：插入到dom，默认是'header'，可以自定义选择器
+- singleton：是否将样式都插入到同一个style标签中，默认是false
+- transform：返回一个函数，在`style-loader`插入style时执行，是在浏览器端执行，可以在函数内进行一些操作(可以用window等)。这个函数对每个css文件都会执行
 
 ```
 module: {
@@ -385,14 +396,13 @@ module: {
 // css.transform.js
 module.exports = function(css){
     if(window.innerWidth >= 768){ return null}
-	return css  // 需要返回css
+	return css  // 如果什么都不做，直接返回css
 }
 ```
 
-
 **css-loader**
 
-options
+`css-loader`的参数如下：
 - alias: 解析的别名
 - importLoader：看css后面是否有其他要处理的loader
 - minimize：是否压缩
@@ -400,12 +410,38 @@ options
     - :local：给定局部的样式
     - :global
     - compose 继承一段样式
-    - compose ... from path 从某个文件引入样式
+    - composes: bigBox from './common.css' 从某个文件引入样式。注意这个要写在第一行，否则打包后顺序是倒序的。
     
 ```
+{
+    loader: 'css-loader',
+    options: {
+        minimize: true,
+        modules: true  // 开启模块化
+    }
+}
+
+// 使用
+import base from './css/base.css'
+import './css/common.css'
+
+
+var app = document.querySelector('#app')
+
+app.innerHTML = '<div class="' + base.box + '"></div>'
 ```
 
+这样会生成如下代码：
+
+![](./img/webpack/2.png)
+
+它的class不是原来的class名字了，可以通过localIdentName: '[path][name]__[local]--[hash:base64:5]'来指定。
+这样会生成如：`src-css-base_box_2SaOU`的名称。
+
+
 ## 配置less和sass
+
+如果项目中less、css文件都有，则要多个配置。
 
 ```
 npm install less less-loader
@@ -433,23 +469,24 @@ module: {
 }
 ```
 
-如果项目中less、css文件都有，则要多个配置。
+上面的配置，`less-loader`会将less文件处理后交给`css-loader`继续处理。
 
 ## 提取css
 
+提取css有2种方式：
 - extract-loader
-- ExtractTextWebpackPlugin 主流
+- ExtractTextWebpackPlugin 这个是主流的方式
 
 ```
 module: {
     rules: [{
         test: /\.less$/,
         use: ExtractTextWebpackPlugin.extract({
-            // 不提取的怎么插入
+            // fallback是没有提取的css用什么loader处理 
             fallback: {
                 loader: 'style-loader'
             },
-            // 提取的怎么处理
+            // 将源码转成css模块所需的loader
             use: [{
                     loader: 'css-loader',
                     options: {
@@ -459,25 +496,31 @@ module: {
                 {
                     loader: 'less-loader'
                 }
-            ]
+            ],
+            publicPath: ''  // 重写全局publicPath
         })
     }]
 },
 plugins: [
+    // 因为css都是交给loader去处理，提取出来需要改变loader
     new ExtractTextWebpackPlugin({
-        filename: '[name].min.css'
+        filename: '[name].min.css', // 提出来的css名称
+        allChunks: false  // 如果为true，则所有的css都会提取，如果是false，则只提取初始化的(非异步加载的，可以将同步和异步的拆分)。当用了CommonsChunkPlugin时，比如是true。
     })
 ]
 ```
 
+`ExtractTextWebpackPlugin.extract`里的参数表示后续的一些处理。
+
+提取出来的css文件不会自动插入到页面中，需要手动引入。
+
 ## postcss in webpack
 
-- PostCSS：是一个用js转换css的工具
+PostCSS是一个用js转换css的工具。 和postcss相关的插件：
 - Autoprefixer：给css加前缀
 - css-nano：css-loader是用它来进行css压缩的
 - css-next：可以使用未来新的css，比如calc，css变量，自定义选择器
 - postcss-loader
-
 
 ```
 {
@@ -490,14 +533,19 @@ plugins: [
 		]
 	}
 }
+
+// 浏览器版本
+{
+    "browserslist": ["> 1%", "last 2 versions"]
+}
 ```
 
-公用一份`browserslist`，建议写在`package.json`，还可以写在`.browserslistrc`
+公用一份`browserslist`，建议写在`package.json`，还可以写在`.browserslistrc`。
 
 还有一些
-- postcss-import
-- postcss-url
-- postcss-assets
+- postcss-import：通过@import 将css inline到css中
+- postcss-url：
+- postcss-assets：
 
 ## Tree shaking
 
@@ -511,7 +559,7 @@ plugins: [
 https://segmentfault.com/a/1190000010934375
 
 处理步骤是：
-- tree shaking先标识无用代码,自动会注释unused harmony exports
+- tree shaking ，webpack自动会标识无用代码,自动会注释unused harmony exports
 - webpack.optimize.UglifyJsPlugin ：用来移除无用代码
 
 ```
@@ -522,14 +570,215 @@ plugins: [
 
 有些库书写的方式不能tree shaking，必须按照es6 module书写才行。 lodash，用lodash-es也不行，需要借助bable的`babel-plugin-lodash`。
 
-css tree shaking需要使用[purify css](https://github.com/webpack-contrib/purifycss-webpack)。
+css tree shaking需要使用[purify css](https://github.com/webpack-contrib/purifycss-webpack)。它是去除静态资源里的无用css,必须配合extract-text-webpack-plugin使用，而且要写在它的后面。
 
 options
-- paths:glob.sync([]) 将给的url或html进行tree shaking。glob.sync可以处理多路径
+- paths:glob.sync([]) 将给的url或html进行tree shaking。glob.sync可以处理多路径。paths表示要遍历的地址，它会把这些文件里用到的css提取出来，没用用的去掉。
 
 ```
 npm install glob-all
+
+new PurifycssWebpack({
+	paths: glob.sync([
+		path.join(__dirname, '*.html'),  // 必须是绝对地址
+		path.join(__dirname, 'src/*.js')
+	])
+})
 ```
+
+在js里插入，或直接在html写都可以去除。
+
+## 文件处理
+
+- 图片处理
+- 字体文件
+- 第三方js库
+
+**图片处理**
+css中引入的图片
+自动合成雪碧图
+压缩图片
+base64编码
+
+file-loader：引入文件
+url-loader: base64，字体文件
+img-loader：压缩图片
+postcss-sprites：合成雪碧图
+
+```
+// file-loader
+{
+    test: /\.(jpg|png|jpeg|gif)$/,
+    use: [{
+        loader: 'file-loader',
+        options: {
+        	useRelativePath: true,  
+        	publicPath: '',
+        	outputPath: 'dist/'
+        }
+    }]
+}
+
+
+// url-loader，在图片处理时可以代替file-loader，limit表示图片小于多少字节时转base64
+{
+    test: /\.(jpg|png|jpeg|gif)$/,
+    use: [{
+        loader: 'url-loader',
+        options: {
+            name: '[name]-[hash:5].min.[ext]',  // 用来命名雪碧图的名字
+        	limit: 5000,
+        	useRelativePath: true,  
+        	publicPath: '',
+        	outputPath: 'dist/'
+        }
+    }]
+}
+
+// img-loader， 压缩图片，它也是一些图片压缩库插件的集合，可以通过pngquant查看
+{
+    loader: 'img-loader',
+    options: {
+        pngquant: {
+            quality: 80
+        }
+    }
+}
+
+// postcss-sprites
+{
+    loader: 'postcss-loader',
+    options: {
+        ident: 'postcss',
+        plugins: [
+            require('postcss-sprites')({
+                spritePath: 'dist/assets/imgs/sprites',
+                retina:true   // 用来处理高清图
+            })
+        ]
+    }
+}
+```
+
+**字体文件**
+
+```
+{
+    test: /\.(eot|woff2?|ttf|svg)/,
+    use: [
+        {
+            loader: 'url-loader',
+            options: {
+                name: '[name]-[hash:5].[ext]',
+                limit: 5000,
+                publicPath: '',
+                outputPath: 'dist/',
+                useRelativePath: true
+            }
+        }
+    ]
+}
+```
+
+**第三方js库**
+
+给每个模块注入变量，这个变量很多地方要用。
+- `webpack.providePlugin`
+
+```
+new webpack.ProvidePlugin({
+    $: 'jquery'
+})
+
+// 如果jquery是自定义的，而不是第三方的，可以通过alias
+new webpack.ProvidePlugin({
+    $: 'jquery$'
+})
+resolve:{
+    alias: {
+        jquery$: path.resolve(__dirname, 'src/js/jquery.min.js')
+    }
+}
+```
+
+- `imports-loader`，也要设置alias
+
+```
+{
+    test: path.resolve(__dirname, 'src/app.js'),
+    use: [
+        {
+            loader: 'imports-loader',
+            options: {
+                $: 'jquery'
+            }
+        }
+    ]
+}
+```
+
+- 全局变量
+
+## 生成HTML
+打包过程中，js/css等都会有hash版本，这个需要自动插到html中。所以需要自动生成html文件。
+
+插件：HtmlWebpackPlugin
+
+options
+    template：模板文件，可以是html，ejs等，注意加loader
+    filename：文件名
+    minify：是否压缩html
+    chunks：有哪几个entry需要加入
+    inject：布尔值， 是否自动插入生成的css和js
+    
+```
+new HtmlWebpackPlugin({
+    filename: 'html/index.html',
+    template: './index.html',
+    // inject: false
+    minify: {  // 借助第三方html-minify实现
+        collapseWhitespace: true
+    }
+})
+```
+
+在html中引入图片,需要使用`html-loader`
+options
+    attrs: [img: src]
+
+```
+{
+	test: /\.jpg$/,
+	use: [
+		{
+			loader: 'file-loader'
+		}
+	]
+},
+{
+	test: /\.html$/,
+	use: [
+		{
+			loader: 'html-loader',
+			options: {
+				attrs: ['img:src', 'img:data-src']
+			}
+		}
+	]
+}
+```
+
+## 搭建开发环境
+
+- webpack watch mode
+```
+webpack -watch
+
+// 简写
+webpack -w
+```
+- webpack-dev-server
+- express + webpack-dev-middleware
 
 
 
