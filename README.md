@@ -48,7 +48,7 @@
 1. [模块化开发](性能与工程化/模块化开发.md)
 1. [require.js](性能与工程化/requirejs.md)
 1. [gulp指南](性能与工程化/gulp.md)
-1. [webpack指南](性能与工程化/webpack.md)
+1. [webpack指南](工具/webpack.md)
 1. [测试理论](性能与工程化/测试理论.md)
 1. [测试实战jest](性能与工程化/测试实战jest.md)
 1. [UI测试](性能与工程化/UI测试.md)
@@ -56,7 +56,7 @@
 1. [canvas基础知识]()
 1. [canvas实战之射击小游戏]()
 1. [开始使用eslint]()
-1. [webstorm](工具/webpack.md)
+1. [webstorm]()
 1. [深入学习chrome调试工具](工具/chrome-devtools.md)
 1. [精通vue]
 1. [精通react]
