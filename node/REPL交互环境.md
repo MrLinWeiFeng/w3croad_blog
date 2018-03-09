@@ -5,7 +5,7 @@ REPL是Read Eval Print Loop的简称，它是一个终端环境，相当于浏�
 ![repl](_img/repl.png)
 
 通过在终端运行`node`命令，进入node的执行环境。
-
+- 下划线`-` 可以获取上一个表达式运算结果
 - .help 可以查看可以使用的方法
 - .save 1.txt 可以将执行的代码保存成文件
 - .load 1.txt 下次可以通过这种方式加载文件

@@ -8,5 +8,15 @@
 </head>
 <body>
 <div style="height: 200px;background: red;"></div>
+
+<script src="./zepto.js"></script>
+<script>
+    $.ajax({
+        url: 'http://www.b.com/index.php',
+        success(data){
+            console.log(data)
+        }
+    })
+</script>
 </body>
 </html>
