@@ -7,24 +7,35 @@
 - http://javascript.ruanyifeng.com/bom/same-origin.html
 - http://javascript.ruanyifeng.com/bom/cors.html
 - http://javascript.ruanyifeng.com/htmlapi/websocket.html
+- https://developer.mozilla.org/zh-CN/docs/Web/Guide/AJAX
 
-1. 简述ajax？
+1. 简述ajax，及其代码流程？
+ajax就是利用XMLHttpRequest对象向后端发送请求，返回数据并处理的技术，整个过程无需刷新页面。
+代码流程如下：创建ajax对象 -> open() -> 监听事件，readyState为4，且响应码是2开头或304 -> send() 发送请求。
+
 2. ajax对象的属性
     - 说说readyState的几种状态，分别是什么意思?
+    0: 请求还没有初始化，open之前
+    1: 建立连接，open后
+    2: 请求已接受,send后
+    3: 正在处理请求
+    4: 请求已完成，且响应已准备好
     - response是什么，类型可以是哪些，怎么设置类型？
     - responseType的作用？
-    - responseText属性是什么？
-    - responseXML属性是什么？
+    - responseText属性是什么？服务器以文本字符的形式返回
+    - responseXML属性是什么？以 XMLDocument 对象方式返回
     - 常用的status有哪些，分别是什么意思?
     - statusText和status的区别？
     - timeout的作用?
 3. ajax对象的方法
     - open()：说说它的参数?
-    - overrideMimeType()
+    open的第一个参数是请求方法，注意要大写，否则有些浏览器无法处理请求。如果是同步，不必使用函数，不过不推荐，体验不好，而且Firefox 30.0已经废弃同步请求。最好在回调里使用try...catch，因为通信错误（如果服务器宕机）会抛出错误。
+    - overrideMimeType()和responseType
+    - 发送和接收二进制数据
 4. ajax的事件有哪些？(8个)
 5. withCredentials是什么，怎么用?
 6. 怎么获取服务器所有响应头信息和某字段头信息？所有头信息的格式？如果头信息字段重名会怎么样？
-7. 请求方式有哪些，get和post的区别?
+7. http请求方式有哪些，get和post的区别?
 8. send()的参数类型有哪些?
 9. setRequestHeader() 什么时候用?如果多次设置同一字段这个字段的值是什么?怎么解决post乱码问题?
 10. 怎么通过overrideMimeType()接受二进制数据？接受二进制数据更好的方式是什么？
