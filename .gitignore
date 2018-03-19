@@ -3,3 +3,5 @@ _think/
 .DS_Store
 /**/node_modules
 echarts*/
+package.json
+package.lock.json
