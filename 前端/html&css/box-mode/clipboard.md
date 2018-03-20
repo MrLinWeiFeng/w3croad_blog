@@ -43,3 +43,21 @@
 </body>
 </html>
 ```
+
+还有一些其他用法可以参考上面的官网。
+
+```
+// 获取下一个元素的innerText内容
+new ClipboardJS('.btn', {
+    target: function(trigger) {
+        return trigger.nextElementSibling;
+    }
+});
+
+// 获取元素的属性
+new ClipboardJS('.btn', {
+    text: function(trigger) {
+        return trigger.getAttribute('aria-label');
+    }
+});
+```
